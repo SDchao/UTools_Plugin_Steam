@@ -1,6 +1,10 @@
 # 简介
 一款基于UTools的插件，可以快速打开已经在Steam上下载完毕的游戏或应用。
 
+# 使用说明
+通过 "Steam" 关键字触发命令
+
+触发后可搜索游戏应用
 # 系统需求
 仅在Windows系统生效。
 
@@ -10,3 +14,6 @@
 
 * 32位系统：HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam
 * 64位系统：HKEY_LOCAL_MACHINE\SOFTWARE\Valve\Steam
+
+# 问题反馈
+* [Github](https://github.com/SDchao/UTools_Plugin_Steam/issues/new)
