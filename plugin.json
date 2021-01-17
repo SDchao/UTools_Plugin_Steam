@@ -1,0 +1,21 @@
+{
+    "pluginName": "Steam快速启动",
+    "description": "快速启动已安装的Steam应用",
+    "author": "SDchao",
+    "homepage": "https://github.com/SDchao",
+    "logo": "logo.png",
+    "preload": "preload.js",
+    "version": "1.0.0",
+    "features": [
+        {
+            "platform": [
+                "win32"
+            ],
+            "code": "select_apps",
+            "explain": "启动Steam中下载完毕的应用",
+            "cmds": [
+                "steam"
+            ]
+        }
+    ]
+}
