@@ -101,7 +101,8 @@ function getSteamAppsList() {
 }
 
 function CacheCheck() {
-    if (appListCache.length == 0) {
+    // 无缓冲列表 或者 第一个url为空
+    if (appListCache.length == 0 || !appListCache[0].url) {
         appListCache = getSteamAppsList()
     }
 }
@@ -114,13 +115,6 @@ function GetFilteredAppsList(word) {
     let resultList = []
     for (let j in appListCache) {
         e = appListCache[j]
-        // 字母覆盖
-        if (e.lowtitle.includes(word)) {
-            resultList.push(e)
-            return
-        }
-
-        // 模糊搜索
         let lastIndex = -1
         let lowtitle = e.lowtitle
         let charList = word.split("")
