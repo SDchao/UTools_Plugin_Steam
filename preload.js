@@ -154,6 +154,7 @@ window.exports = {
                 window.utools.hideMainWindow()
                 let url = itemData.url
                 window.utools.shellOpenExternal(url)
+                appListCache = []
                 window.utools.outPlugin()
             },
             placeholder: "搜索应用名"
