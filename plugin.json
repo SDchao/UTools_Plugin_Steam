@@ -2,7 +2,7 @@
     "pluginName": "Steam快速启动",
     "description": "快速启动已安装的Steam应用",
     "author": "SDchao",
-    "homepage": "https://github.com/SDchao",
+    "homepage": "https://github.com/SDchao/UTools_Plugin_Steam",
     "logo": "logo.png",
     "preload": "preload.js",
     "version": "1.0.0",
