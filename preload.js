@@ -140,7 +140,6 @@ function GetFilteredAppsList(word) {
 
         if (isMatch) {
             e.matchScore = matchScore
-            e.description = matchScore
             resultList.push(e)
         }
     }
