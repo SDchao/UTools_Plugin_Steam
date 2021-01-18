@@ -128,11 +128,12 @@ function GetFilteredAppsList(word) {
                 break
             }
             else {
-                if (nowIndex == 0) continue
-                let prevChar = lowtitle[nowIndex - 1]
-                let alphaRegex = /^[a-z0-9]$/
-                if (alphaRegex.test(prevChar))
-                    matchScore += nowIndex - lastIndex - 1
+                if (nowIndex != 0) {
+                    let prevChar = lowtitle[nowIndex - 1]
+                    let alphaRegex = /^[a-z0-9]$/
+                    if (alphaRegex.test(prevChar))
+                        matchScore += nowIndex - lastIndex - 1
+                }
                 lastIndex = nowIndex
             }
         }
