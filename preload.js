@@ -119,6 +119,7 @@ function GetFilteredAppsList(word) {
         let lowtitle = e.lowtitle
         let charList = word.split("")
         let isMatch = true
+        let matchScore = 0  // Higher score stands for lower relevant
         for (let i in charList) {
             char = charList[i]
             let nowIndex = lowtitle.indexOf(char, lastIndex + 1)
@@ -127,15 +128,21 @@ function GetFilteredAppsList(word) {
                 break
             }
             else {
+                if (nowIndex == 0) continue
+                let prevChar = lowtitle[nowIndex - 1]
+                let alphaRegex = /^[a-z0-9]$/
+                if (alphaRegex.test(prevChar))
+                    matchScore += nowIndex - lastIndex - 1
                 lastIndex = nowIndex
             }
         }
 
         if (isMatch) {
+            e.matchScore = matchScore
             resultList.push(e)
         }
     }
-    return resultList
+    return resultList.sort((a, b) => a.matchScore - b.matchScore)
 }
 
 window.exports = {
