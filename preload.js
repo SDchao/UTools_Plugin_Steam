@@ -140,11 +140,17 @@ function GetFilteredAppsList(word) {
 
         if (isMatch) {
             e.matchScore = matchScore
+            e.description = matchScore
             resultList.push(e)
         }
     }
     return resultList.sort((a, b) => a.matchScore - b.matchScore)
 }
+
+CacheCheck()
+GetFilteredAppsList("we")
+
+let window = {}
 
 window.exports = {
     "select_apps": {
