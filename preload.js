@@ -10,7 +10,7 @@ const IDBLACKLIST = ['228980']
 
 let appListCache = []
 
-function getSteamPath() {
+function GetSteamPath() {
     let command = "REG QUERY "
     let regex = /^\s+InstallPath\s+REG_SZ\s+(.*)$/m
 
@@ -45,8 +45,8 @@ function getSteamPath() {
     return null;
 }
 
-function getSteamAppsList() {
-    let steamPath = getSteamPath()
+function GetSteamAppsList() {
+    let steamPath = GetSteamPath()
     if (!steamPath) {
         return [{ title: '无法找到Steam', description: 'Steam或许未被正常安装', url: '' }]
     }
@@ -103,7 +103,7 @@ function getSteamAppsList() {
 function CacheCheck() {
     // 无缓冲列表 或者 第一个url为空
     if (appListCache.length == 0 || !appListCache[0].url) {
-        appListCache = getSteamAppsList()
+        appListCache = GetSteamAppsList()
     }
 }
 
