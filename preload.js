@@ -132,7 +132,7 @@ function GetFilteredAppsList(word) {
                     let prevChar = lowtitle[nowIndex - 1]
                     let alphaRegex = /^[a-z0-9]$/
                     if (alphaRegex.test(prevChar))
-                        matchScore += nowIndex - lastIndex - 1
+                        matchScore += nowIndex - lastIndex
                 }
                 lastIndex = nowIndex
             }
