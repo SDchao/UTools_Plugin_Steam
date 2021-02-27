@@ -74,26 +74,31 @@ function GetSteamAppsList() {
 
         for (let i in steamAppsPathList) {
             steamAppsPath = steamAppsPathList[i]
-            let fileList = fs.readdirSync(steamAppsPath)
-            for (let j in fileList) {
-                file = fileList[j]
-                let extname = path.extname(file)
-                if (extname == ".acf") {
-                    let content = fs.readFileSync(path.join(steamAppsPath, file)).toString()
-                    try {
-                        let appid = appidRegex.exec(content)[1]
+            try {
+                let fileList = fs.readdirSync(steamAppsPath)
+                for (let j in fileList) {
+                    file = fileList[j]
+                    let extname = path.extname(file)
+                    if (extname == ".acf") {
+                        let content = fs.readFileSync(path.join(steamAppsPath, file)).toString()
+                        try {
+                            let appid = appidRegex.exec(content)[1]
 
-                        // appid是否在黑名单
-                        if (IDBLACKLIST.includes(appid))
-                            continue;
+                            // appid是否在黑名单
+                            if (IDBLACKLIST.includes(appid))
+                                continue;
 
-                        let appname = appnameRegex.exec(content)[1]
-                        appList.push({ title: appname, description: appid, url: URL_STEAMRUN + appid, lowtitle: appname.toLowerCase() })
-                    }
-                    catch (err) {
-                        console.error("Unable to solve game:" + file)
+                            let appname = appnameRegex.exec(content)[1]
+                            appList.push({ title: appname, description: appid, url: URL_STEAMRUN + appid, lowtitle: appname.toLowerCase() })
+                        }
+                        catch (err) {
+                            console.error("Unable to solve game:" + file)
+                        }
                     }
                 }
+            }
+            catch (err) {
+                console.error("Unable to solve library: " + steamAppsPath)
             }
         }
         return appList;
