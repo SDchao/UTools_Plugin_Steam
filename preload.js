@@ -58,7 +58,7 @@ function GetSteamAppsList() {
         let steamAppsPathList = [steamPath + "\\steamapps"]
 
         // 查找其他的Library
-        let libraryRegex = /^\s+"[0-9]+"\s+"(.+)"$/gm
+        let libraryRegex = /"path".+"(.+)"/g
         let content = fs.readFileSync(path.join(steamAppsPathList[0], "libraryfolders.vdf")).toString()
         try {
             let res = libraryRegex.exec(content)
