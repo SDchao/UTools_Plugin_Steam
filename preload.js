@@ -151,26 +151,69 @@ function GetFilteredAppsList(word) {
     return resultList.sort((a, b) => a.matchScore - b.matchScore)
 }
 
+function RefreshFeatures() {
+    CacheCheck()
+
+    let features = utools.getFeatures()
+    features.forEach((value) => {
+        utools.removeFeature(value.code)
+    })
+    
+    let cmd_list = []
+
+    appListCache.forEach((value) => {
+        cmd_list.push(value.title)
+    })
+
+    utools.setFeature({
+        "code": "start_app",
+        "explain": "Steam启动该应用",
+        "cmds": cmd_list
+    })
+
+    console.log(utools.getFeatures())
+}
+
+utools.onPluginReady(() => {
+    CacheCheck()
+    RefreshFeatures()
+})
+
 window.exports = {
     "select_apps": {
         mode: "list",
         args: {
             enter: (action, callbackSetList) => {
                 CacheCheck()
+                RefreshFeatures()
                 callbackSetList(appListCache)
             },
             search: (action, searchWord, callbackSetList) => {
-                CacheCheck()
                 callbackSetList(GetFilteredAppsList(searchWord))
             },
             select: (action, itemData) => {
                 window.utools.hideMainWindow()
                 let url = itemData.url
                 window.utools.shellOpenExternal(url)
-                appListCache = []
                 window.utools.outPlugin()
             },
             placeholder: "搜索应用名"
+        }
+    },
+    "start_app" :{
+        mode: "none",
+        args: {
+            enter: (action) => {
+                title = action.payload
+                console.log()
+                for (let i in appListCache) {
+                    let app = appListCache[i]
+                    if (app.title === title) {
+                        window.utools.shellOpenExternal(app.url)
+                    }
+                }
+                window.utools.outPlugin()
+            }
         }
     }
 }
