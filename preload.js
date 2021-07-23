@@ -168,7 +168,10 @@ function RefreshFeatures() {
     utools.setFeature({
         "code": "start_app",
         "explain": "Steam启动该应用",
-        "cmds": cmd_list
+        "cmds": cmd_list,
+        "platform": [
+                "win32"
+            ]
     })
 
     console.log(utools.getFeatures())
@@ -184,8 +187,6 @@ window.exports = {
         mode: "list",
         args: {
             enter: (action, callbackSetList) => {
-                CacheCheck()
-                RefreshFeatures()
                 callbackSetList(appListCache)
             },
             search: (action, searchWord, callbackSetList) => {
@@ -204,15 +205,28 @@ window.exports = {
         mode: "none",
         args: {
             enter: (action) => {
+                window.utools.hideMainWindow()
                 title = action.payload
-                console.log()
                 for (let i in appListCache) {
                     let app = appListCache[i]
                     if (app.title === title) {
                         window.utools.shellOpenExternal(app.url)
+                        break
                     }
                 }
                 window.utools.outPlugin()
+            }
+        }
+    },
+    "refresh_cache": {
+        mode: "none",
+        args: {
+            enter: () => {
+                window.utools.hideMainWindow()
+                applicationCache = []
+                CacheCheck()
+                RefreshFeatures()
+                utools.showNotification("已刷新应用列表")
             }
         }
     }

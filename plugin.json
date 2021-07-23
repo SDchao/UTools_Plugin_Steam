@@ -16,6 +16,16 @@
             "cmds": [
                 "steam"
             ]
+        },
+        {
+            "platform": [
+                "win32"
+            ],
+            "code": "refresh_cache",
+            "explain": "刷新已安装Steam应用列表",
+            "cmds": [
+                "steam缓存清理"
+            ]
         }
     ]
 }
