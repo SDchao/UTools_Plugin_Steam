@@ -8,8 +8,14 @@
 
 # 更新日志
 
+## 1.0.5
+修复找不到其他steamlibrary的情况
+
+感谢 **[ciaranchen](https://github.com/ciaranchen)**
+
 ## 1.0.4
 增加直接输入应用名称启动功能
+
 加入缓存清理，命令为 "Steam缓存清理"
 
 ## 1.0.2

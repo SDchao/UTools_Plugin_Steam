@@ -58,14 +58,22 @@ function GetSteamAppsList() {
         let steamAppsPathList = [steamPath + "\\steamapps"]
 
         // 查找其他的Library
-        let libraryRegex = /"path".+"(.+)"/g
+        let libraryRegex1 = /"path".+"(.+)"/g
+        let libraryRegex2 = /"\d+".+"(.+)"/g
         let content = fs.readFileSync(path.join(steamAppsPathList[0], "libraryfolders.vdf")).toString()
         try {
-            let res = libraryRegex.exec(content)
+            let res = libraryRegex1.exec(content)
             while (res) {
                 let rawPath = res[1]
                 steamAppsPathList.push(rawPath.replace("\\\\", "\\") + "\\steamapps")
-                res = libraryRegex.exec(content)
+                res = libraryRegex1.exec(content)
+            }
+
+            res = libraryRegex2.exec(content)
+            while (res) {
+                let rawPath = res[1]
+                steamAppsPathList.push(rawPath.replace("\\\\", "\\") + "\\steamapps")
+                res = libraryRegex2.exec(content)
             }
         }
         catch (err) {
@@ -158,7 +166,7 @@ function RefreshFeatures() {
     features.forEach((value) => {
         utools.removeFeature(value.code)
     })
-    
+
     let cmd_list = []
 
     appListCache.forEach((value) => {
