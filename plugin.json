@@ -1,31 +1,23 @@
 {
-    "pluginName": "Steam快速启动",
-    "description": "快速启动已安装的Steam应用",
-    "author": "SDchao",
-    "homepage": "https://github.com/SDchao/UTools_Plugin_Steam",
-    "logo": "logo.png",
-    "preload": "preload.js",
-    "version": "1.0.5",
-    "features": [
-        {
-            "platform": [
-                "win32"
-            ],
-            "code": "select_apps",
-            "explain": "启动Steam中下载完毕的应用",
-            "cmds": [
-                "steam"
-            ]
-        },
-        {
-            "platform": [
-                "win32"
-            ],
-            "code": "refresh_cache",
-            "explain": "刷新已安装Steam应用列表",
-            "cmds": [
-                "steam缓存清理"
-            ]
-        }
-    ]
+  "pluginName": "Steam快速启动",
+  "description": "快速启动已安装的Steam应用",
+  "author": "SDchao",
+  "homepage": "https://github.com/SDchao/UTools_Plugin_Steam",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "version": "1.0.5",
+  "features": [
+    {
+      "platform": ["win32"],
+      "code": "select_apps",
+      "explain": "启动Steam中下载完毕的应用",
+      "cmds": ["steam"]
+    },
+    {
+      "platform": ["win32"],
+      "code": "refresh_cache",
+      "explain": "刷新已安装Steam应用列表",
+      "cmds": ["steam缓存清理"]
+    }
+  ]
 }
