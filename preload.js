@@ -98,12 +98,23 @@ function GetSteamAppsList() {
               if (IDBLACKLIST.includes(appid)) continue
 
               let appname = appnameRegex.exec(content)[1]
-              appList.push({
+              let newGame = {
                 title: appname,
                 description: appid,
                 url: URL_STEAMRUN + appid,
                 lowtitle: appname.toLowerCase(),
-              })
+              }
+
+              let isDuplicated = false
+              for (const app of appList) {
+                utools.showNotification(app.description)
+                if (app.description === newGame.description) {
+                  isDuplicated = true
+                }
+              }
+              if (!isDuplicated) {
+                appList.push(newGame)
+              }
             } catch (err) {
               console.error('Unable to solve game:' + file)
             }
