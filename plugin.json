@@ -5,7 +5,7 @@
   "homepage": "https://github.com/SDchao/UTools_Plugin_Steam",
   "logo": "logo.png",
   "preload": "preload.js",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "features": [
     {
       "platform": ["win32"],
