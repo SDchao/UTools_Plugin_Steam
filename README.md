@@ -10,6 +10,7 @@
 
 ## 1.0.6
 修复出现重复应用的问题
+感谢 **[zeemanz](https://github.com/zeemanz)** 提供解决方案
 
 ## 1.0.5
 修复找不到其他steamlibrary的情况
